@@ -13,7 +13,9 @@ const Cell = ({ value }: Props) => {
         console.log(value);
       }}
     >
-      <Text>{value}</Text>
+      <Box className=" flex aspect-square w-full items-center  justify-center rounded-lg border-4 border-transparent hover:border-purple-700">
+        <Text>{value}</Text>
+      </Box>
     </Box>
   );
 };
