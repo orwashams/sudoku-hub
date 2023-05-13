@@ -1,49 +1,31 @@
-import { Grid } from "@mantine/core";
 import React from "react";
+
 import { Cell } from "../Cell";
 
-const SubGrid = () => {
+type Props = {
+  ids?: Array<string>;
+};
+const SubGrid = ({ ids }: Props) => {
   return (
-    <Grid
-      gutter={0}
-      className=" aspect-square w-full border-2 border-black"
-      justify="center"
-    >
-      <Grid.Col span={4}>
-        <Cell value={1} />
-      </Grid.Col>
+    <section className="grid grid-cols-3 border-2 border-black">
+      <Cell id={ids?.[0]} />
 
-      <Grid.Col span={4}>
-        <Cell value={2} />
-      </Grid.Col>
+      <Cell id={ids?.[1]} />
 
-      <Grid.Col span={4}>
-        <Cell value={3} />
-      </Grid.Col>
+      <Cell id={ids?.[2]} />
 
-      <Grid.Col span={4}>
-        <Cell value={4} />
-      </Grid.Col>
+      <Cell id={ids?.[3]} />
 
-      <Grid.Col span={4}>
-        <Cell value={5} />
-      </Grid.Col>
-      <Grid.Col span={4}>
-        <Cell value={6} />
-      </Grid.Col>
+      <Cell id={ids?.[4]} />
 
-      <Grid.Col span={4}>
-        <Cell value={7} />
-      </Grid.Col>
+      <Cell id={ids?.[5]} />
 
-      <Grid.Col span={4}>
-        <Cell value={8} />
-      </Grid.Col>
+      <Cell id={ids?.[6]} />
 
-      <Grid.Col span={4}>
-        <Cell value={9} />
-      </Grid.Col>
-    </Grid>
+      <Cell id={ids?.[7]} />
+
+      <Cell id={ids?.[8]} />
+    </section>
   );
 };
 
