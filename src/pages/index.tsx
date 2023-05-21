@@ -5,7 +5,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "~/utils/api";
 import { Flex, MantineProvider, Text } from "@mantine/core";
-import { InteractiveBoard } from "shared/InteractiveBoard";
+import { SudokuBoard } from "shared/SudokuBoard";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
       <Flex justify={"center"} align={"center"} h={"100vh"}>
-        <InteractiveBoard />
+        <SudokuBoard />
       </Flex>
     </MantineProvider>
   );
