@@ -1,42 +1,37 @@
-import React, {
-  type MouseEvent,
-  useState,
-  useEffect,
-  TouchEventHandler,
-} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { Text, clsx } from "@mantine/core";
 
 type Props = {
+  isMouseDown: boolean;
+  setIsMouseDown: (s: boolean) => void;
   value?: number;
 };
 
-const Cell = ({ value }: Props) => {
-  const [isMouseDown, setIsMouseDown] = useState(false);
-
+const Cell = ({ value, isMouseDown, setIsMouseDown }: Props) => {
   const [isHighlighted, setIsHighlighted] = useState(false);
 
   const [isHoveredOver, setIsHoveredOver] = useState(false);
 
   useEffect(() => {
     setIsHighlighted(isHoveredOver && isMouseDown);
-  }, [isHoveredOver, isMouseDown]);
+    console.log("is Highlighed", isHighlighted);
+  }, [isHighlighted, isHoveredOver, isMouseDown]);
 
-  const handleMouseDown = (event: MouseEvent) => {
+  const handleMouseDown = useCallback(() => {
     setIsMouseDown(true);
-  };
+    console.log("Mouse Down");
+  }, [setIsMouseDown]);
 
-  const handleHoverOver = (event: MouseEvent) => {
-    console.log("MouseHover: handle hover");
-
+  const handleHover = useCallback(() => {
     setIsHoveredOver(true);
-  };
+    console.log("Mouse hover");
+  }, []);
 
-  const handleRightClick = (event: MouseEvent) => {
-    event.preventDefault();
-
-    setIsHighlighted(false);
-  };
+  const handleExit = useCallback(() => {
+    setIsHoveredOver(false);
+    console.log("Mouse unhovered");
+  }, []);
 
   return (
     <div className="cursor-pointer border border-black">
@@ -45,9 +40,9 @@ const Cell = ({ value }: Props) => {
           "flex aspect-square items-center justify-center rounded-md border-red-400 hover:border-4",
           isHighlighted ? "border-4 " : ""
         )}
-        onMouseOver={handleHoverOver}
+        onMouseEnter={handleHover}
+        onMouseOut={handleExit}
         onMouseDown={handleMouseDown}
-        onContextMenu={handleRightClick}
       >
         <Text className="text-7xl">{value}</Text>
       </span>

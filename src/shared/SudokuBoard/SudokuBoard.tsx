@@ -1,40 +1,26 @@
 import React, { useState } from "react";
-import { Cell } from "./components";
+import { SubGrid } from "./components";
 
 const ROWS = 9;
 const COLS = 9;
-
-const SubGrid = () => {
-  return (
-    <section className="grid grid-cols-3 border-2 border-black">
-      <Cell />
-
-      <Cell />
-
-      <Cell />
-
-      <Cell />
-
-      <Cell />
-
-      <Cell />
-
-      <Cell />
-
-      <Cell />
-
-      <Cell />
-    </section>
-  );
-};
+const NUMBER_OF_CELLS = 9;
 
 const SudokuBoard: React.FC = () => {
   const [board, setBoard] = useState<Array<Array<number>>>([[]]);
 
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
   const renderSubGrids = () => {
     const subGrids = [];
     for (let i = 0; i < ROWS; i++) {
-      subGrids.push(<SubGrid key={i} />);
+      subGrids.push(
+        <SubGrid
+          key={i}
+          isMouseDown={isMouseDown}
+          numOfCells={NUMBER_OF_CELLS}
+          setIsMouseDown={setIsMouseDown}
+        />
+      );
     }
     return subGrids;
   };
